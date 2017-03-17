@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { remove_item } from '../actions';
 
-export default class Cart extends Component {
+class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {clicked: false};
-  }
-
-  onSpanChange(id){
-    this.props.removeItem(id);
   }
 
   sumPrice(prices, items) {
@@ -38,7 +36,7 @@ export default class Cart extends Component {
     const items = this.props.items.map(item => {
         sum+= parseFloat(item.price);
         return (
-            <li className="add_item" key={item.DateID} ><button  className="x_btn" onClick={() => this.onSpanChange(item.DateID)}>X</button>
+            <li className="add_item" key={item.DateID} ><button  className="x_btn" onClick={() => this.props.remove_item(item.DateID)}>X</button>
               <img src={item.src}/><span className="add_name">{item.name}</span><span className="add_price">{item.price}$</span>
             </li>
         )
@@ -57,3 +55,11 @@ export default class Cart extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    items: state.cartHandle
+  };
+}
+
+export default connect(mapStateToProps, { remove_item })(Cart);

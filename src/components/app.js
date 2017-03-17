@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ListOfGoods from './ListOfGoods';
 import Search from '../containers/search';
 import CheckBoxes from './checkboxes';
-import Cart from './cart';
+import Cart from '../containers/cart';
 import Filters from './filters';
 
 import { connect } from 'react-redux';
@@ -18,8 +18,7 @@ class Store extends Component {
                 {name: "samsung", status: false}],
       opt: [{name: "camera", status: false},
                 {name: "radio", status: false}, {name: "mp3", status: false},
-                {name: "internet", status: false}],
-      cartItems: []
+                {name: "internet", status: false}]
     };
   }
 
@@ -47,37 +46,13 @@ class Store extends Component {
   }
 
   // GET ID HERE
-  handleAdd = (id, name, src, price) => {
-    this.setState({
-      cartItems: [
-        ...this.state.cartItems,
-        {
-          id,
-          name,
-          src,
-          price,
-          DateID: Date.now()
-        }
-      ]
-    });
-  }
 
-  handleRemove = id => {
-    const removeitem = this.state.cartItems.filter(item => {
-      if(item.DateID !== id) {
-        return true;
-      }
-    });
-    this.setState({
-      cartItems: removeitem
-    });
-  }
+
 
   render() {
     const filteredGoods = Filters.filterSearch(this.props.searchText, this.state.checked, this.state.opt);
     const data = this.state.checked;
     const option = this.state.opt;
-    const added = this.state.cartItems;
     return (
       <div>
       <div className="row">
@@ -87,7 +62,7 @@ class Store extends Component {
             <div className="menu-name"><p>ONLINE STORE</p></div>
           </div>
         </div>
-        <Cart items={added} removeItem={this.handleRemove}/>
+        <Cart />
         </div>
 
         <Search />
@@ -98,7 +73,7 @@ class Store extends Component {
           </div>
 
           <div className="medium-10 column border_left">
-            <ListOfGoods goods={filteredGoods} addToCart={this.handleAdd}/>
+            <ListOfGoods goods={filteredGoods} />
           </div>
         </div>
       </div>
