@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 const GoodsItem = (props) => {
   const {id, name, description, price, brand, src, features} = props.gooditem;
-  return(
+  return (
     <div className="large-6 column">
       <div className="item_goods cf">
 

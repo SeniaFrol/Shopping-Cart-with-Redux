@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GoodsItem from './GoodsItem';
+import GoodsItem from '../components/goodsitem';
 import { connect } from 'react-redux';
 import { add_item } from '../actions';
 

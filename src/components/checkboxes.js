@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class checkBoxes extends Component {
   constructor(props) {
     super(props);
-
-
   }
+
   getData(name) {
     this.props.boxes(name);
   }
+
   getOpt(option) {
     this.props.option(option);
   }

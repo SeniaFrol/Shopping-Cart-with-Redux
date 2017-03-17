@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import ListOfGoods from './ListOfGoods';
+import React, { Component } from 'react';
+import ListOfGoods from '../containers/ListOfGoods';
 import Search from '../containers/search';
 import CheckBoxes from './checkboxes';
 import Cart from '../containers/cart';
@@ -50,18 +50,19 @@ class Store extends Component {
 
 
   render() {
-    const filteredGoods = Filters.filterSearch(this.props.searchText, this.state.checked, this.state.opt);
-    const data = this.state.checked;
-    const option = this.state.opt;
+    const { checked, opt } = this.state;
+    const filteredGoods = Filters.filterSearch(this.props.searchText, checked, opt);
     return (
       <div>
       <div className="row">
       <div className="cart">
+
         <div className="top-bar">
           <div className="top-bar-left">
             <div className="menu-name"><p>ONLINE STORE</p></div>
           </div>
         </div>
+
         <Cart />
         </div>
 
@@ -69,7 +70,7 @@ class Store extends Component {
 
         <div className="row content_data">
           <div className="medium-2 column border_right">
-            <CheckBoxes boxes={this.handleCheckBoxed} data={data} opt={option} option={this.handleCheckOption}/>
+            <CheckBoxes boxes={this.handleCheckBoxed} data={checked} opt={opt} option={this.handleCheckOption}/>
           </div>
 
           <div className="medium-10 column border_left">
