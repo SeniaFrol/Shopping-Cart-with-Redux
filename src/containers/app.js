@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import ListOfGoods from '../containers/ListOfGoods';
-import Search from '../containers/search';
-import CheckBoxes from './checkboxes';
-import Cart from '../containers/cart';
-import Filters from './filters';
+import ListOfGoods from './ListOfGoods';
+import Search from './search';
+import CheckBoxes from '../components/checkboxes';
+import Cart from './cart';
+import Filters from '../components/filters';
 
 import { connect } from 'react-redux';
 
-import Payment from './payment_template.js';
-import Footer from './footer.js';
+import Payment from '../components/payment_template.js';
+import Footer from '../components/footer.js';
 
 class Store extends Component {
   constructor(props) {
@@ -44,9 +44,6 @@ class Store extends Component {
     });
      this.setState({opt: updatedCheckOpt});
   }
-
-  // GET ID HERE
-
 
 
   render() {
